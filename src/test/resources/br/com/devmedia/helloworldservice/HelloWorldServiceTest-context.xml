@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:jaxws="http://cxf.apache.org/jaxws"
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:cxf="http://cxf.apache.org/core"
+    xmlns:wsa="http://cxf.apache.org/ws/addressing"
+    xmlns:http="http://cxf.apache.org/transports/http/configuration"
+    xmlns:wsrm-policy="http://schemas.xmlsoap.org/ws/2005/02/rm/policy"
+    xmlns:wsrm-mgr="http://cxf.apache.org/ws/rm/manager"
+    
+    xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://cxf.apache.org/transports/http/configuration http://cxf.apache.org/schemas/configuration/http-conf.xsd
+		http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+		http://schemas.xmlsoap.org/ws/2005/02/rm/policy http://schemas.xmlsoap.org/ws/2005/02/rm/wsrm-policy.xsd
+		http://cxf.apache.org/ws/rm/manager http://cxf.apache.org/schemas/configuration/wsrm-manager.xsd
+		http://cxf.apache.org/jaxws
+		http://cxf.apache.org/schemas/jaxws.xsd" >
+
+    <jaxws:endpoint
+        id="serverOp"
+        address="http://localhost:9292/hello"
+        xmlns:s="http://helloworldservice.devmedia.com.br"
+        implementor="br.com.devmedia.helloworldservice.SimpleNormalHelloService"
+        serviceName="s:HelloService"
+        endpointName="s:HelloPort"
+        bus="serverBus"
+        >
+        <jaxws:properties>
+            <entry key="schema-validation-enabled" value="true" />
+         </jaxws:properties>
+    </jaxws:endpoint>
+
+     <cxf:bus name="serverBus">
+        <cxf:features>
+            <wsa:addressing/>
+            <wsrm-mgr:reliableMessaging>
+                <wsrm-policy:RMAssertion>
+                    <wsrm-policy:BaseRetransmissionInterval Milliseconds="4000"/>           
+                    <wsrm-policy:AcknowledgementInterval Milliseconds="2000"/>
+                </wsrm-policy:RMAssertion>
+                <wsrm-mgr:destinationPolicy>
+                    <wsrm-mgr:acksPolicy intraMessageThreshold="0" />
+                </wsrm-mgr:destinationPolicy>
+            </wsrm-mgr:reliableMessaging>
+        </cxf:features>
+    </cxf:bus>
+
+    
+</beans>

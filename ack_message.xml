@@ -1,0 +1,32 @@
+ID: 5
+Address: http://localhost:9292/decoupled_endpoint
+Response-Code: 200
+Encoding: UTF-8
+Http-Method: POST
+Content-Type: text/xml; charset=UTF-8
+Headers: {Accept=[*/*], Cache-Control=[no-cache], connection=[keep-alive], Content-Length=[798], content-type=[text/xml; charset=UTF-8], Host=[localhost:9292], Pragma=[no-cache], SOAPAction=["http://schemas.xmlsoap.org/ws/2005/02/rm/SequenceAcknowledgement"], User-Agent=[Apache CXF 2.7.0]}
+Payload: 
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" >
+    <soap:Header>
+        <Action xmlns="http://schemas.xmlsoap.org/ws/2004/08/addressing" >
+			http://schemas.xmlsoap.org/ws/2005/02/rm/SequenceAcknowledgement
+        </Action>
+        <MessageID xmlns="http://schemas.xmlsoap.org/ws/2004/08/addressing" >
+			urn:uuid:abbb5b00-ab5e-48f2-a6ec-13bd99f791f1
+        </MessageID>
+        <To xmlns="http://schemas.xmlsoap.org/ws/2004/08/addressing" >
+			http://localhost:9292/decoupled_endpoint
+        </To>
+        <wsrm:SequenceAcknowledgement
+            xmlns:ns2="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm" >
+            <wsrm:Identifier>
+				urn:uuid:bce14bb6-371d-4926-b9c0-45bc6186619a
+            </wsrm:Identifier>
+            <wsrm:AcknowledgementRange
+                Lower="1"
+                Upper="2" />
+        </wsrm:SequenceAcknowledgement>
+    </soap:Header>
+    <soap:Body />
+</soap:Envelope>

@@ -1,0 +1,40 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" >
+    <soap:Header>
+        <Action xmlns="http://schemas.xmlsoap.org/ws/2004/08/addressing" >
+			http://helloworldservice.devmedia.com.br/HelloService/digaAdeusResponse
+        </Action>
+        <MessageID xmlns="http://schemas.xmlsoap.org/ws/2004/08/addressing" >
+			urn:uuid:21ce5c30-8095-4486-a9ee-2394f0e34644
+        </MessageID>
+        <To xmlns="http://schemas.xmlsoap.org/ws/2004/08/addressing" >
+			http://localhost:9292/decoupled_endpoint
+        </To>
+        <RelatesTo xmlns="http://schemas.xmlsoap.org/ws/2004/08/addressing" >
+			urn:uuid:7b87611a-3249-42eb-8413-de4fcb242f39
+        </RelatesTo>
+        <wsrm:Sequence
+            xmlns:ns2="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm"
+            soap:mustUnderstand="1" >
+            <wsrm:Identifier>
+				urn:uuid:faff829d-96e7-4f35-8a66-9ba2203594d1
+            </wsrm:Identifier>
+            <wsrm:MessageNumber>
+				1
+            </wsrm:MessageNumber>
+        </wsrm:Sequence>
+    </soap:Header>
+    <soap:Body>
+        <ns2:digaAdeusResponse xmlns:ns2="http://helloworldservice.devmedia.com.br/" >
+            <response>
+                <name>
+				Sr. John Doe
+                </name>
+                <sleep>
+				false
+                </sleep>
+            </response>
+        </ns2:digaAdeusResponse>
+    </soap:Body>
+
+</soap:Envelope>

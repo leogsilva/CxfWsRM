@@ -1,0 +1,41 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" >
+    <soap:Header>
+        <Action xmlns="http://schemas.xmlsoap.org/ws/2004/08/addressing" >
+			http://schemas.xmlsoap.org/ws/2005/02/rm/CreateSequence
+        </Action>
+        <MessageID xmlns="http://schemas.xmlsoap.org/ws/2004/08/addressing" >
+			urn:uuid:534b8a1e-b85c-4a6d-9138-79454e3c1e0d
+        </MessageID>
+        <To xmlns="http://schemas.xmlsoap.org/ws/2004/08/addressing" >
+			http://localhost:9292/hello
+        </To>
+        <ReplyTo xmlns="http://schemas.xmlsoap.org/ws/2004/08/addressing" >
+            <Address>
+			http://localhost:9292/decoupled_endpoint
+            </Address>
+        </ReplyTo>
+    </soap:Header>
+    <soap:Body>
+        <CreateSequence
+            xmlns:ns2="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns="http://schemas.xmlsoap.org/ws/2005/02/rm" >
+            <AcksTo>
+                <ns2:Address>
+					http://localhost:9292/decoupled_endpoint
+                </ns2:Address>
+            </AcksTo>
+            <Expires>
+				PT0S
+            </Expires>
+            <Offer>
+                <Identifier>
+					urn:uuid:fcda83a9-9002-4b47-a84c-8622b75b7e42
+                </Identifier>
+                <Expires>
+					PT0S
+                </Expires>
+            </Offer>
+        </CreateSequence>
+    </soap:Body>
+
+</soap:Envelope>
